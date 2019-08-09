@@ -1,8 +1,8 @@
 # Job-Search-Web-Scraper
-This code allows the scraping of job details from the CWjobs.co.uk website and export the data to a CSV file.
+This code allows the scraping of job details from the cwjobs.co.uk website and export the data to a CSV file.
 
-It's a convenient way to export a list of jobs you are interested in to Excel giving the following information:
-* Job Keyword & Location 
+It's a simple way to export a list of jobs you are interested in to Excel giving the following information:
+* Job Keyword & Location
 * Job Title 
 * Salary
 * Job detail page link
