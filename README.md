@@ -15,7 +15,7 @@ You can easily customise your search by changing:
 * The date the jobs were posted
 * Combinations of Job title and job location
 
-## Users Guide
+## User Guide
 If you want to see the latest postings leave the 'postedwithin' value to 1. If you want to see what's been posted over the last week change the value to 7 etc.
 ```Python
 def get_job_list(keyword, location): 
