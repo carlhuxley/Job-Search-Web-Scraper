@@ -1,9 +1,9 @@
 # Job-Search-Web-Scraper
 
-This project was born because it was so difficult for me to keep track of the amount of data jobs on recruitment websites.
-Its too time consuming cutting and pasting all of this imformation into an Excel spreadsheet for further analysis.
+This project was born because it was so difficult for me to keep track of all the data jobs listed daily on recruitment websites.
+It's too time consuming cutting and pasting all of that imformation into an Excel spreadsheet for further analysis.
 
-This code allows the scraping of job details from the cwjobs.co.uk website.  You can search for a given job title and location over a specific time period and export the data to a CSV file.
+This code allows the scraping of job details from the cwjobs.co.uk website. You can search for a given job title and location over a specific time period and export the data to a CSV file.
 
 It's a simple way to export a list of jobs you are interested in to Excel giving the following information:
 * Job Keyword & Location
