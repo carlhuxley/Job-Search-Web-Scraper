@@ -9,7 +9,7 @@ It's a simple way to export a list of jobs you are interested in to Excel giving
 * Job Keyword & Location
 * Job Title 
 * Salary
-* Job detail page link
+* Job Detail Page Link
 * Closing Date
 * Hiring Organisation
 * Hiring City & Region
