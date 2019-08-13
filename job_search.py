@@ -122,13 +122,13 @@ def clean_description(description):
     resultwords  = [word for word in querywords if word.lower() not in markup]
     description = ' '.join(resultwords)
     
-    description = description.lower()
+    #description = description.lower()
     
-    bag_of_words = description.split()
+    #bag_of_words = description.split()
     
-    bag_of_words = [ps.stem(word) for word in bag_of_words if not word in set(stopwords.words('english'))]
+    #bag_of_words = [ps.stem(word) for word in bag_of_words if not word in set(stopwords.words('english'))]
     
-    description = ' '.join(bag_of_words)
+    #description = ' '.join(bag_of_words)
     
     return description
 
