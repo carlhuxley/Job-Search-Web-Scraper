@@ -27,7 +27,7 @@ for search_item in search_list:
     location = search_item[1]
 
     #Call the job detail function passing in the get job list function
-    jobs = get_detail_for_all_jobs(get_job_list(keyword, location))
+    jobs = get_detail_for_all_jobs(get_job_list(keyword, location, 1))
     
     corpus = create_corpus(jobs)
     

@@ -30,11 +30,11 @@ class Job():
         self.hiring_region = ""
         self.description = ""
 
-def get_job_list(keyword, location): 
+def get_job_list(keyword, location, postedwithin): 
        
     job_list = []     
       
-    url ='https://www.cwjobs.co.uk/jobs/{}/in-{}?radius=30&postedwithin=1'.format(keyword,location)
+    url ='https://www.cwjobs.co.uk/jobs/{}/in-{}?radius=30&postedwithin={}'.format(keyword,location,postedwithin)
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
