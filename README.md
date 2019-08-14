@@ -20,19 +20,24 @@ You can easily customise your search by changing:
 * Combinations of Job title and job location
 
 ## User Guide
-If you want to see the latest postings leave the 'postedwithin' value to 1. If you want to see what's been posted over the last week change the value to 7 etc.
-```Python
-def get_job_list(keyword, location): 
-       
-    job_list = []     
-      
-    url ='https://www.cwjobs.co.uk/jobs/{}/in-{}?radius=30&postedwithin=1'.format(keyword,location)
-```
 By changing the list values here you can search on as many combinations of job title and job location as you like.
 ```Python
 search_list = [['reports-developer', 'manchester'],['data-analyst', 'manchester'],
                ['bi-developer', 'bradford'],['reports-developer', 'bradford'],
                ['bi-developer', 'manchester'],['reports-developer', 'stoke-on-trent']]
+
+for search_item in search_list:
+    
+    keyword = search_item[0]
+    location = search_item[1]
+
+
+```
+
+If you want to see the latest postings leave the 'postedwithin' parameter set to 1. If you want to see what's been posted over the last week change the value to 7 etc.
+```Python
+    #Call the job detail function passing in the get job list function
+    jobs = get_detail_for_all_jobs(get_job_list(keyword, location, 1))
 ```
 Change the file path to where you want to save the exported csv file.
 ```Python
