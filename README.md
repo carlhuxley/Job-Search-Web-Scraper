@@ -6,7 +6,7 @@ It's too time consuming cutting and pasting all of that imformation into an Exce
 This code allows the scraping of job details from the cwjobs.co.uk website. You can search for a given job title and location over a specific time period and export the data to a CSV file.
 
 It's a simple way to export a list of jobs you are interested in to Excel giving the following information:
-* Job Keyword & Location
+* Job Search Keyword & Location
 * Job Title 
 * Salary
 * Job Detail Page Link
