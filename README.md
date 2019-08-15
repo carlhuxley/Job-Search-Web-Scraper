@@ -20,7 +20,7 @@ You can easily customise your search by changing:
 * Combinations of Job title and job location
 
 ## User Guide
-By changing the list values in the search_list you can search on as many combinations of job title and job location as you like.
+You need to customise and run the job_search.py file. By changing the list values in the search_list you can search on as many combinations of job title and job location as you like.
 ```Python
 search_list = [['reports-developer', 'manchester'],['data-analyst', 'manchester'],
                ['bi-developer', 'bradford'],['reports-developer', 'bradford'],
