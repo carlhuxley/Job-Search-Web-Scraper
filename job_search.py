@@ -9,9 +9,8 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless') 
 options.add_argument('window-size=1366x662') 
 from datetime import date
-from get_jobs import get_job_list
-from get_jobs import get_detail_for_all_jobs
-from process_description import create_corpus
+import job_func.get_jobs
+import job_func.process_description
 import pandas as pd
 
 #Search for jobs and create dataframe and output a csv using the criteria below 
@@ -27,9 +26,9 @@ for search_item in search_list:
     location = search_item[1]
 
     #Call the job detail function passing in the get job list function
-    jobs = get_detail_for_all_jobs(get_job_list(keyword, location, 1))
+    jobs = job_func.get_jobs.get_detail_for_all_jobs(job_func.get_jobs.get_job_list(keyword, location, 1))
     
-    corpus = create_corpus(jobs)
+    corpus = job_func.process_description.create_corpus(jobs)
     
     df = pd.DataFrame(jobs, columns = ['Search Keyword', 'Search Location', 'Title', 'Salary',
                                        'Link', 'Date Posted', 'Valid Through',                                   

@@ -9,7 +9,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless') 
 options.add_argument('window-size=1366x662') 
 from bs4 import BeautifulSoup
-from process_description import clean_description
+import job_func.process_description
 import json
 
 jobs = []
@@ -100,7 +100,7 @@ def get_detail_for_all_jobs(job_list):
         'Hiring Organisation':j.hiring_organisation_name, 
         'Hiring City':j.hiring_city, 
         'Hiring Region':j.hiring_region, 
-        'Description':clean_description(j.description)
+        'Description':job_func.process_description.clean_description(j.description)
                 }
         jobs.append(job)
         
