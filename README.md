@@ -26,7 +26,7 @@ search_list = [['reports-developer', 'manchester'],['data-analyst', 'manchester'
                ['bi-developer', 'bradford'],['reports-developer', 'bradford'],
                ['bi-developer', 'manchester'],['reports-developer', 'stoke-on-trent']]
 ```
-If you want to see the latest postings leave the third parameter(postedwithin) in the get_job_list function set to 1. If you want to see what's been posted over the last week change the value to 7 etc.
+If you want to see the latest postings leave the third argument(postedwithin) in the get_job_list function set to 1. If you want to see what's been posted over the last week change the value to 7 etc.
 ```Python
     #Call the job detail function passing in the get job list function
     jobs = get_detail_for_all_jobs(get_job_list(keyword, location, 1))
