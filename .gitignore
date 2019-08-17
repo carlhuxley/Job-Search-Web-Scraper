@@ -1,1 +1,10 @@
-**/__pycache__/   
+
+# Ignore the pycache folder
+**/__pycache__/  
+
+#Ignore tests folder 
+tests/
+
+# Ignore search_list.csv
+search_list.csv
+
