@@ -30,6 +30,9 @@ class Job():
         self.hiring_region = ""
         self.description = ""
 
+def get_search_csv():
+    pass
+
 def get_job_list(keyword, location, postedwithin): 
        
     job_list = []     
