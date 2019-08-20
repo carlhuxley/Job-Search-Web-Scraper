@@ -3,6 +3,8 @@
 Created on Wed Aug 14 11:19:28 2019
 
 @author: JMN
+
+This module cleans job descriptions scraped from cwjobs.co.uk.
 """
 import re
 import nltk
@@ -12,6 +14,10 @@ from nltk.stem.porter import PorterStemmer
 ps = PorterStemmer()
 
 def clean_description(description):
+    """
+    This function removes html markup from job descriptions and returns 
+    a cleaned one ready for further processing.
+    """
     letters_only = re.sub("[^a-zA-Z0-9]", " ", description)                   
                        
     query = letters_only
@@ -34,6 +40,9 @@ def clean_description(description):
     return description
 
 def create_corpus(jobs):
+    """
+    This function returns a list of job descriptions.
+    """
     corpus = []
    
     for j in jobs:
@@ -43,6 +52,9 @@ def create_corpus(jobs):
 
  #create bag of words model
 def bag_of_words(corpus):
+    """ 
+    This function returns a bag of words model.
+    """
     from sklearn.feature_extraction.text import CountVectorizer
     cv = CountVectorizer(ngram_range=(1, 3), min_df = 2 )
     X = cv.fit_transform(corpus).toarray()

@@ -3,6 +3,8 @@
 Created on Fri May 17 10:24:32 2019
 
 @author: Carl Huxley
+
+This code web scrapes job details from cwjobs.co.uk. and exports a csv file.
 """
 from selenium import webdriver
 options = webdriver.ChromeOptions()
@@ -20,6 +22,7 @@ postedwithin = ""
 
 #Import a search list csv file into a dataframe
 df = pd.read_csv('search_list.csv')
+
 #Iterate over the dataframe for each row in it updating search variables
 for index, search in df.iterrows():
     keyword = search['keyword']
@@ -34,9 +37,11 @@ for index, search in df.iterrows():
     
     df = pd.DataFrame(jobs, columns = ['Search Keyword', 'Search Location', 
                                        'Search Radius', 'Title', 'Salary',
-                                       'Link', 'Date Posted', 'Valid Through',                                   
-                                       'Hiring Organisation', 'Hiring City',
-                                       'Hiring Region', 'Description'])
+                                       'Job Type', 'Link', 'Date Posted',
+                                       'Valid Through', 'Hiring Organisation',
+                                       'Hiring City', 'Hiring Region', 
+                                       'Hiring Contact','Job Reference',
+                                       'Job ID','Description'])
  
 #Export the dataframe as a csv file
     
