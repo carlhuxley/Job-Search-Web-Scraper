@@ -20,6 +20,7 @@ class Job():
         self.keyword = ""
         self.location = ""
         self.title = ""
+        self.radius = ""
         self.link = ""
         self.salary = ""
         self.json = ""
@@ -30,14 +31,11 @@ class Job():
         self.hiring_region = ""
         self.description = ""
 
-def get_search_csv():
-    pass
-
-def get_job_list(keyword, location, postedwithin): 
+def get_job_list(keyword, location, radius, postedwithin): 
        
     job_list = []     
       
-    url ='https://www.cwjobs.co.uk/jobs/{}/in-{}?radius=30&postedwithin={}'.format(keyword,location,postedwithin)
+    url ='https://www.cwjobs.co.uk/jobs/{}/in-{}?radius={}&postedwithin={}'.format(keyword,location,radius,postedwithin)
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -66,6 +64,7 @@ def get_job_list(keyword, location, postedwithin):
                     new_job = Job()
                     new_job.keyword = keyword
                     new_job.location = location
+                    new_job.radius = radius
                     new_job.title = a.text
                     new_job.link = a["href"]
                     job_list.append(new_job)
@@ -95,6 +94,7 @@ def get_detail_for_all_jobs(job_list):
         job = {
         'Search Keyword':j.keyword,
         'Search Location':j.location,
+        'Search Radius':j.radius,
         'Title':j.title, 
         'Salary':j.salary,
         'Link':j.link, 

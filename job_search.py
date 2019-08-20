@@ -13,31 +13,35 @@ import job_func.get_jobs
 import job_func.process_description
 import pandas as pd
 
-#Search for jobs and create dataframe and output a csv using the criteria below 
-#You need two lists, one locations and the other keywords. combine both lists
+keyword=""
+location = ""
+radius = ""
+postedwithin = ""
 
-search_list = [['reports-developer', 'manchester'],['data-analyst', 'manchester'],
-               ['bi-developer', 'bradford'],['reports-developer', 'bradford'],
-               ['bi-developer', 'manchester'],['reports-developer', 'stoke-on-trent']]
-
-for search_item in search_list:
+#Import a search list csv file into a dataframe
+df = pd.read_csv('search_list.csv')
+#Iterate over the dataframe for each row in it updating search variables
+for index, search in df.iterrows():
+    keyword = search['keyword']
+    location = search['location']
+    radius = search['radius']
+    postedwithin = search['postedwithin']
     
-    keyword = search_item[0]
-    location = search_item[1]
-
     #Call the job detail function passing in the get job list function
-    jobs = job_func.get_jobs.get_detail_for_all_jobs(job_func.get_jobs.get_job_list(keyword, location, 1))
+    jobs = job_func.get_jobs.get_detail_for_all_jobs(job_func.get_jobs.get_job_list(keyword, location, radius, postedwithin))
     
     corpus = job_func.process_description.create_corpus(jobs)
     
-    df = pd.DataFrame(jobs, columns = ['Search Keyword', 'Search Location', 'Title', 'Salary',
+    df = pd.DataFrame(jobs, columns = ['Search Keyword', 'Search Location', 
+                                       'Search Radius', 'Title', 'Salary',
                                        'Link', 'Date Posted', 'Valid Through',                                   
                                        'Hiring Organisation', 'Hiring City',
                                        'Hiring Region', 'Description'])
  
-    #Export the dataframe as a csv file
-    today = date.today()
-    today = today.strftime('%Y%m%d')
+#Export the dataframe as a csv file
+    
+today = date.today()
+today = today.strftime('%Y%m%d')
   
 file_name = 'C:\Files\Carl\Career\Research\job_searches\{}_cwjobs.csv'.format(today)
 print (file_name)
