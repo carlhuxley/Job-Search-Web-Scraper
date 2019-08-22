@@ -5,6 +5,5 @@
 #Ignore tests folder 
 tests/
 
-# Ignore search_list.csv
-search_list.csv
+
 
