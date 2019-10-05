@@ -18,6 +18,9 @@ keyword = ""
 location = ""
 radius = ""
 postedwithin = ""
+from job_func import create_app
+
+app = create_app()
 
 # Import a search list csv file into a dataframe
 df = pd.read_csv('search_list.csv')
@@ -52,3 +55,5 @@ file_name = f'C:\Files\Carl\Career\Research\job_searches\{today}_cwjobs.csv'
 print(file_name)
 export_df = df.to_csv(file_name, sep=',', index=False,
                       encoding='utf-8-sig')
+if __name__ == '__main__':
+    app.run(debug=True)
