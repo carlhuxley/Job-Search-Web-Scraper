@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 
 db.create_all()
 
+
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     search_keyword = db.Column(db.String(100), nullable=False)
