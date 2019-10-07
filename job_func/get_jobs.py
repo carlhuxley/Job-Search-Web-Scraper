@@ -9,7 +9,7 @@ This module gets job summaries and details from the cwjobs.co.uk website.
 import json
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import job_func.process_description
+import process_description
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -43,14 +43,14 @@ class Job():
         self.description = ""
 
 
-def get_job_list(keyword, location, radius, postedwithin):
+def get_job_list(keyword, location, radius, posted):
     """
     This function takes keyword, location, radius and postedwithin as arguments.
     It returns a list of job detail urls from cwjobs.co.uk.
     """
     job_list = []
 
-    url = 'https://www.cwjobs.co.uk/jobs/{}/in-{}?radius={}&postedwithin={}'.format(keyword, location, radius, postedwithin)
+    url = 'https://www.cwjobs.co.uk/jobs/{}/in-{}?radius={}&postedwithin={}'.format(keyword, location, radius, posted)
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -131,22 +131,22 @@ def get_detail_for_all_jobs(job_list):
         j.description = json.loads(j.json.text)['description']
 
         job = {
-        'Search Keyword': j.keyword,
-        'Search Location':j.location,
-        'Search Radius':j.radius,
-        'Title':j.title,
-        'Salary':j.salary,
-        'Job Type':j.job_type,
-        'Link': j.link,
-        'Date Posted':j.date_posted,
-        'Valid Through':j.valid_through,
-        'Hiring Organisation':j.hiring_organisation_name,
-        'Hiring City':j.hiring_city,
-        'Hiring Region':j.hiring_region,
-        'Hiring Contact':j.hiring_contact,
-        'Job Reference':j.hiring_reference,
-        'Job ID':j.job_id,
-        'Description':job_func.process_description.clean_description(j.description)}
+        'search_keyword': j.keyword,
+        'search_location': j.location,
+        'search_radius': j.radius,
+        'title': j.title,
+        'salary': j.salary,
+        'job_type': j.job_type,
+        'link': j.link,
+        'date_posted': j.date_posted,
+        'valid_through': j.valid_through,
+        'hiring_organisation': j.hiring_organisation_name,
+        'hiring_city': j.hiring_city,
+        'hiring_region': j.hiring_region,
+        'hiring_contact': j.hiring_contact,
+        'hiring_reference': j.hiring_reference,
+        'job_id': j.job_id,
+        'description':process_description.clean_description(j.description)}
         jobs.append(job)
 
     return jobs

@@ -1,10 +1,12 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+#from routes import app, db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
@@ -24,7 +26,7 @@ class Job(db.Model):
     hiring_region = db.Column(db.String(100), nullable=False)
     hiring_contact = db.Column(db.String(100), nullable=False)
     hiring_reference = db.Column(db.String(100), nullable=False)
-    job_id = db.Column(db.Integer, nullable=False)
+    job_id = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
