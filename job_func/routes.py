@@ -47,23 +47,6 @@ def get_jobs():
 
         for job in jobs:
             job = Job(**job)
-            """
-            job = Job(search_keyword=job['search_keyword'],
-                    search_location=job['search_location'],
-                    search_radius=job['search_radius'],
-                    title=job['title'],
-                    salary=job['salary'],
-                    job_type=job['job_type'],
-                    link=job['link'],
-                    date_posted=job['date_posted'],
-                    valid_through=job['valid_through'],
-                    hiring_organisation=job['hiring_organisation'],
-                    hiring_city=job['hiring_city'],
-                    hiring_region=job['hiring_region'],
-                    hiring_contact=job['hiring_contact'],
-                    hiring_reference=job['hiring_reference'],
-                    job_id=job['job_id'],
-                    description=job['description'])"""
             db.session.add(job)
             db.session.commit()
 
@@ -71,8 +54,3 @@ def get_jobs():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# employee_data = {'firstname':'John','lastname':'Smith'}
-# employee = Employee(**employee_data)
-# db.session.add(employee)
-# db.session.commit()
