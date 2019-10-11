@@ -35,7 +35,7 @@ class Job(db.Model):
 def search():
     return render_template('search_jobs.html')
 
-
+#This is in hiring model branch?
 @app.route('/get_jobs', methods=['POST', 'GET'])
 def get_jobs():
     if request.method == 'POST':
