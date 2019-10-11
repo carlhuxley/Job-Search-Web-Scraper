@@ -5,11 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from job_search import job_search
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 
 db = SQLAlchemy(app)
-
-db.create_all()
 
 
 class Job(db.Model):
@@ -35,7 +33,6 @@ class Job(db.Model):
 def search():
     return render_template('search_jobs.html')
 
-#This is in hiring model branch?
 @app.route('/get_jobs', methods=['POST', 'GET'])
 def get_jobs():
     if request.method == 'POST':
@@ -46,6 +43,7 @@ def get_jobs():
         posted = search["Posted"]
         jobs = job_search(keyword, location, radius, posted)
 
+        db.create_all()
         for job in jobs:
             job = Job(**job)
             db.session.add(job)
@@ -55,3 +53,4 @@ def get_jobs():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
