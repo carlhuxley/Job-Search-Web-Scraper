@@ -4,19 +4,14 @@ Created on Thu Aug 15 12:09:11 2019
 
 @author: JMN
 """
+from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from job_func.config import Config
+from job_func.job_search import job_search
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 
+db = SQLAlchemy(app)
 
-def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(Config)
-
-    db.init_app(app)
-
-    from job_func.routes import get_jobs
-
-    return app
+from job_func import routes

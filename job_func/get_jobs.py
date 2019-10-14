@@ -9,7 +9,7 @@ This module gets job summaries and details from the cwjobs.co.uk website.
 import json
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import process_description
+import job_func.process_description
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -146,7 +146,7 @@ def get_detail_for_all_jobs(job_list):
         'hiring_contact': j.hiring_contact,
         'hiring_reference': j.hiring_reference,
         'job_id': j.job_id,
-        'description':process_description.clean_description(j.description)}
+        'description':job_func.process_description.clean_description(j.description)}
         jobs.append(job)
 
     return jobs

@@ -8,8 +8,8 @@ This code web scrapes job details from cwjobs.co.uk. and exports a csv file.
 """
 from selenium import webdriver
 from datetime import date
-import get_jobs
-import process_description
+import job_func.get_jobs
+import job_func.process_description
 import pandas as pd
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -26,7 +26,7 @@ posted = ""
 def job_search(keyword, location, radius, posted):
 
     # Call the job detail function passing in the get job list function
-    jobs = get_jobs.get_detail_for_all_jobs(get_jobs.get_job_list(keyword, location, radius, posted))
+    jobs = job_func.get_jobs.get_detail_for_all_jobs(job_func.get_jobs.get_job_list(keyword, location, radius, posted))
 
     df = pd.DataFrame(jobs, columns=['Search Keyword', 'Search Location',
       'Search Radius', 'Title', 'Salary', 'Job Type', 'Link', 'Date Posted',
