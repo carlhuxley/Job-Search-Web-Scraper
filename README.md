@@ -1,7 +1,7 @@
 # Job-Search-Web-Scraper
 I started this python coding project because it was so difficult for me to research all of the jobs listed daily on recruitment websites. It's also too time-consuming copying and pasting all of the information into an Excel spreadsheet for further analysis. Using Python Flask, sqlalchemy, Beautiful Soup, Pandas and Selenium I’ve developed a custom job research tool. Job search criteria entered into a web form is processed by a web scraper that returns a date stamped CSV file and also adds the results to the SQLite database.
 
-The next stage is adding job application functionality. I will be able to choose the jobs from the list I want to apply for, and which version of my CV I want to use. When I click the apply button the tool will apply for all the jobs on the list. Once this is working with cwjobs.co.uk I can extend this to researching and applying for jobs on multiple job boards.
+The next stage is adding job application functionality. I will be able to choose the jobs from the list I want to apply for, and which version of my CV I want to use. When I click the apply button the tool will apply for all the jobs on the list. Now this is working with cwjobs.co.uk I can extend this to researching and applying for jobs on multiple job boards. Looking to change the Selenium/Beautiful Soup based scraper to one using the Scrapy Framework so it's easier to manage scraping from multiple sites.
 
 
 Emtering the following into the job search form:
