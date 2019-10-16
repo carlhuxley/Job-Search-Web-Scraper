@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+        {% block content %}
+            <h1>Job Search Results</h1>
+            {% for job in job_results %}
+                <div>
+                    <a href="{{ job.link }}">{{ job.title }}</a>
+                    {{ job.salary }}
+                </div>
+            {% endfor %}
+        {% endblock content %}

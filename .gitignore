@@ -4,7 +4,6 @@
 
 #Ignore tests folder
 tests/
-experiments/
 
 job_func/site.db
 job_func/test.db

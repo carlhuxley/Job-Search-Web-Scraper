@@ -11,6 +11,7 @@ def search():
 
 @app.route('/get_jobs', methods=['POST', 'GET'])
 def get_jobs():
+    jobs = []
     if request.method == 'POST':
         search = request.form
         keyword = search["Keyword"]
@@ -25,7 +26,7 @@ def get_jobs():
             db.session.add(job)
             db.session.commit()
 
-        return 'Got some jobs!'
+        return render_template('job_results.html', job_results=jobs)
 
 
 
