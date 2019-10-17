@@ -20,6 +20,18 @@ class Job(db.Model):
     hiring_reference = db.Column(db.String(100), nullable=False)
     job_id = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=False)
+    application_stages = db.relationship('ApplicationStage', backref='job', lazy=True)
 
     def __repr__(self):
         return f"Job('{self.title}', '{self.date_posted}', '{self.valid_through}')"
+
+
+class ApplicationStage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(20), nullable=False, default='Pending')
+    date_applied = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    note = db.Column(db.Text, nullable=False)
+    job_id = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)
+
+    def __repr__(self):
+        return f"ApplicationStage('{self.status}', '{self.date_applied}')"
