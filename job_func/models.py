@@ -20,7 +20,8 @@ class Job(db.Model):
     hiring_reference = db.Column(db.String(100), nullable=False)
     job_id = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    application_stages = db.relationship('ApplicationStage', backref='job', lazy=True)
+    application_stages = db.relationship('ApplicationStage',
+                                         backref='job', lazy=True)
 
     def __repr__(self):
         return f"Job('{self.title}', '{self.date_posted}', '{self.valid_through}')"
