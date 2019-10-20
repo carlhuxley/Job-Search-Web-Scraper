@@ -128,7 +128,8 @@ def get_detail_for_all_jobs(job_list):
 
         j.hiring_reference = contact_reference[1].text.strip().split(":")[1]
         j.job_id = contact_reference[2].text.strip().split(":")[1]
-        j.description = json.loads(j.json.text)['description']
+        #j.description = json.loads(j.json.text)['description']
+        j.description = str(soup.find('div', class_='job-description'))
 
         job = {
         'search_keyword': j.keyword,
@@ -146,7 +147,8 @@ def get_detail_for_all_jobs(job_list):
         'hiring_contact': j.hiring_contact,
         'hiring_reference': j.hiring_reference,
         'job_id': j.job_id,
-        'description':job_func.process_description.clean_description(j.description)}
+        #'description':job_func.process_description.clean_description(j.description)
+        'description':j.description}
         jobs.append(job)
 
     return jobs
