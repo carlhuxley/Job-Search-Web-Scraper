@@ -44,15 +44,8 @@ def new_application_stage():
     return render_template('create_application_stage.html',
                            title='New Application Stage', form=form)
 
-# @posts.route("/post/new", methods=['GET', 'POST'])
-# @login_required
-# def new_post():
-#     form = PostForm()
-#     if form.validate_on_submit():
-#         post = Post(title=form.title.data, content=form.content.data, author=current_user)
-#         db.session.add(post)
-#         db.session.commit()
-#         flash('Your post has been created!', 'success')
-#         return redirect(url_for('main.home'))
-#     return render_template('create_post.html', title='New Post',
-#                              form=form, legend='New Post')
+
+@app.route("/job_detail/<int:job_id>")
+def job_detail(job_id):
+        job = Job.query.get_or_404(job_id)
+        return render_template('job_detail.html', title=job.title, job=job)
