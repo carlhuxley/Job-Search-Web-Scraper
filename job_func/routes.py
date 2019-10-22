@@ -28,6 +28,8 @@ def get_jobs():
             db.session.add(job)
             db.session.commit()
 
+        jobs = Job.query.order_by(Job.date_posted.desc())
+
         return render_template('job_results.html', title='Job Results',
                                job_results=jobs)
 

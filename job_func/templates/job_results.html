@@ -3,7 +3,8 @@
             <h1>Job Search Results</h1>
             {% for job in job_results %}
                 <div>
-                    <a href="{{ job.link }}">{{ job.title }}</a>
+                    <a href="{{ url_for('job_detail', job_id=job.id) }}">{{ job.title }}</a>
+                    <!-- <a href="#">{{ job.title }} {{ job.id }}</a> -->
                     {{ job.salary }}
                 </div>
             {% endfor %}
