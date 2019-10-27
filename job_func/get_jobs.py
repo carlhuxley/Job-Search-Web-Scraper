@@ -109,13 +109,15 @@ def get_detail_for_all_jobs(job_list):
             j.job_type = soup.find(
                 'li', class_='job-type icon').find("div", recursive=False).text.strip()
 
-        except TypeError:
+        except:
             j.job_type = "_"
 
         j.json = json_text
         j.title = json.loads(j.json.text)['title']
         j.date_posted = json.loads(j.json.text)['datePosted']
         j.valid_through = json.loads(j.json.text)['validThrough']
+        j.date_added = None
+        j.date_applied = None
         j.hiring_organisation_name = json.loads(j.json.text)['hiringOrganization']['name']
         j.hiring_city = json.loads(j.json.text)['jobLocation']['address']['addressLocality']
         j.hiring_region = json.loads(j.json.text)['jobLocation']['address']['addressRegion']
@@ -139,8 +141,10 @@ def get_detail_for_all_jobs(job_list):
         'salary': j.salary,
         'job_type': j.job_type,
         'link': j.link,
+        'date_added': j.date_added,
         'date_posted': j.date_posted,
         'valid_through': j.valid_through,
+        'date_applied': j.date_applied,
         'hiring_organisation': j.hiring_organisation_name,
         'hiring_city': j.hiring_city,
         'hiring_region': j.hiring_region,

@@ -11,14 +11,16 @@ class Job(db.Model):
     salary = db.Column(db.String(100), nullable=False)
     job_type = db.Column(db.String(100), nullable=False)
     link = db.Column(db.String(100), nullable=False)
+    date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_posted = db.Column(db.String(100), nullable=False)
     valid_through = db.Column(db.String(100), nullable=False)
+    date_applied = db.Column(db.DateTime, nullable=True)
     hiring_organisation = db.Column(db.String(100), nullable=False)
     hiring_city = db.Column(db.String(100), nullable=False)
     hiring_region = db.Column(db.String(100), nullable=False)
     hiring_contact = db.Column(db.String(100), nullable=False)
     hiring_reference = db.Column(db.String(100), nullable=False)
-    job_id = db.Column(db.String(20), nullable=False)
+    job_id = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=False)
     application_stages = db.relationship('ApplicationStage',
                                          backref='job', lazy=True)
@@ -30,9 +32,8 @@ class Job(db.Model):
 class ApplicationStage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(20), nullable=False, default='Pending')
-    date_applied = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     note = db.Column(db.Text, nullable=False)
     job_id = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)
 
     def __repr__(self):
-        return f"ApplicationStage('{self.status}', '{self.date_applied}')"
+        return f"ApplicationStage('{self.status}', '{self.job_id}')"

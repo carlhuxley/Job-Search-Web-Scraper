@@ -25,8 +25,13 @@ def get_jobs():
         db.create_all()
         for job in jobs:
             job = Job(**job)
-            db.session.add(job)
-            db.session.commit()
+            #query job table job_id
+            job_id_exist = Job.query.filter_by(job_id=job.job_id).first()
+            if job_id_exist:
+                pass
+            else:
+                db.session.add(job)
+        db.session.commit()
 
         jobs = Job.query.order_by(Job.date_posted.desc())
 
