@@ -39,6 +39,13 @@ def get_jobs():
                                job_results=jobs)
 
 
+@app.route('/job_applications')
+def applied_jobs():
+    jobs = Job.query.filter(Job.date_applied != None).all()
+    return render_template('job_results.html',
+                           title='Job Applications', job_results=jobs, status='applied')
+
+
 @app.route('/application_stage/new', methods=['GET', 'POST'])
 def new_application_stage():
     form = StageForm()
@@ -50,6 +57,8 @@ def new_application_stage():
         return redirect(url_for('search'))
     return render_template('create_application_stage.html',
                            title='New Application Stage', form=form)
+
+
 
 
 @app.route("/job_detail/<int:job_id>")

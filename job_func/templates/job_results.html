@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
         {% block content %}
+        {% if status == 'applied' %}
+                <h1>Jobs Applied For</h1>
+        {% else %}
             <h1>Job Search Results</h1>
+        {% endif %}
             {% for job in job_results %}
                 <div>
                     <a href="{{ url_for('job_detail', job_id=job.id) }}">{{ job.title }}</a>
