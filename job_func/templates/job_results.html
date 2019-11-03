@@ -3,9 +3,9 @@
         {% if status == 'applied' %}
                 <h1>Jobs</h1>
                 <p><i class="fa fa-filter"></i>
-                <a href="">All</a>
-                <a href="">Today</a>
-                <a href="">Applied</a>
+                <a href="{{ url_for('jobs', query_filter="all") }}">All</a>
+                <a href="{{ url_for('jobs', query_filter="today") }}">Today</a>
+                <a href="{{ url_for('jobs', query_filter="applied") }}">Applied</a>
                 </p>
 
         {% else %}

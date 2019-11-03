@@ -3,9 +3,12 @@ from job_func.models import Job, ApplicationStage
 from job_func import app, db
 from job_func import job_search
 from job_func.forms import JobSearchForm, StageForm
+from datetime import datetime
+today = datetime.now().strftime('%Y-%m-%d') + ' 00:00:00'
+
 
 @app.route("/")
-@app.route('/home')
+@app.route('/Search')
 def search():
     form = JobSearchForm()
     return render_template('search_jobs.html', title='Search Jobs', form=form)
@@ -38,11 +41,16 @@ def get_jobs():
                                job_results=jobs)
 
 
-@app.route('/job_applications')
-def applied_jobs():
-    jobs = Job.query.filter(Job.date_applied is not None).filter(Job.hiring_organisation == 'Harvey Nash plc').all()
+@app.route('/jobs/<query_filter>')
+def jobs(query_filter):
+    if query_filter == "all":
+        jobs = Job.query.order_by(Job.date_posted.desc())
+    elif query_filter == "today":
+        jobs = Job.query.filter(Job.date_added >= today).all()
+    else:
+        jobs = Job.query.filter(Job.date_applied != 'Null')
     return render_template('job_results.html',
-                           title='Job Applications', job_results=jobs, status='applied')
+                           title='Jobs', job_results=jobs, status='applied')
 
 
 @app.route('/application_stage/new', methods=['GET', 'POST'])
