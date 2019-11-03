@@ -4,8 +4,8 @@ from job_func import app, db
 from job_func import job_search
 from job_func.forms import JobSearchForm, StageForm
 
-
-@app.route('/')
+@app.route("/")
+@app.route('/home')
 def search():
     form = JobSearchForm()
     return render_template('search_jobs.html', title='Search Jobs', form=form)
@@ -25,7 +25,6 @@ def get_jobs():
         db.create_all()
         for job in jobs:
             job = Job(**job)
-            #query job table job_id
             job_id_exist = Job.query.filter_by(job_id=job.job_id).first()
             if job_id_exist:
                 pass
@@ -41,7 +40,7 @@ def get_jobs():
 
 @app.route('/job_applications')
 def applied_jobs():
-    jobs = Job.query.filter(Job.date_applied != None).all()
+    jobs = Job.query.filter(Job.date_applied is not None).filter(Job.hiring_organisation == 'Harvey Nash plc').all()
     return render_template('job_results.html',
                            title='Job Applications', job_results=jobs, status='applied')
 
@@ -57,8 +56,6 @@ def new_application_stage():
         return redirect(url_for('search'))
     return render_template('create_application_stage.html',
                            title='New Application Stage', form=form)
-
-
 
 
 @app.route("/job_detail/<int:job_id>")

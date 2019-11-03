@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
         {% block content %}
         {% if status == 'applied' %}
-                <h1>Jobs Applied For</h1>
+                <h1>Jobs</h1>
+                <p><i class="fa fa-filter"></i>
+                <a href="">All</a>
+                <a href="">Today</a>
+                <a href="">Applied</a>
+                </p>
+
         {% else %}
             <h1>Job Search Results</h1>
         {% endif %}
