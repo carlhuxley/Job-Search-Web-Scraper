@@ -3,7 +3,7 @@ from job_func.models import Job, ApplicationStage
 from job_func import app, db
 from job_func import job_search
 from job_func.forms import JobSearchForm, StageForm
-from datetime import datetime
+from datetime import datetime, date
 today = datetime.now().strftime('%Y-%m-%d') + ' 00:00:00'
 
 
@@ -49,6 +49,7 @@ def jobs(query_filter):
         jobs = Job.query.filter(Job.date_added >= today).all()
     else:
         jobs = Job.query.filter(Job.date_applied != 'Null')
+
     return render_template('job_results.html',
                            title='Jobs', job_results=jobs, status='applied')
 
