@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request
-from job_func.models import Job, ApplicationStage
+from job_func.models import Job, Stage, Choice
 from job_func import app, db
 from job_func import job_search
 from job_func.forms import JobSearchForm, StageForm
@@ -54,20 +54,33 @@ def jobs(query_filter):
                            title='Jobs', job_results=jobs, status='applied')
 
 
-@app.route('/application_stage/new', methods=['GET', 'POST'])
-def new_application_stage():
+@app.route('/application_stage/<int:job_id>', methods=['GET', 'POST'])
+def new_application_stage(job_id):
     form = StageForm()
+    job = Job.query.get_or_404(job_id)
     if form.validate_on_submit():
-        stage = ApplicationStage(status=form.status.data, note=form.note.data, job_id=form.job_id.data)
+        stage = Stage(status=form.status.data.name, note=form.note.data, job_id=job_id)
         db.session.add(stage)
         db.session.commit()
         flash('Your Application Stage has been created!', 'success')
         return redirect(url_for('search'))
     return render_template('create_application_stage.html',
-                           title='New Application Stage', form=form)
+                           title='New Application Stage', form=form, job=job)
 
 
 @app.route("/job_detail/<int:job_id>")
 def job_detail(job_id):
         job = Job.query.get_or_404(job_id)
         return render_template('job_detail.html', title=job.title, job=job)
+
+
+@app.route('/choices', methods=['GET', 'POST'])
+def choices():
+    form = ChoiceForm()
+
+    form.opts.query = StatusChoice.query.filter(StatusChoice.id > 1)
+
+    if form.validate_on_submit():
+        return '<html><h1>{}</h1></html>'.format(form.opts.data)
+
+    return render_template('choices.html', form=form)

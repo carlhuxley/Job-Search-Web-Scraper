@@ -22,18 +22,32 @@ class Job(db.Model):
     hiring_reference = db.Column(db.String(100), nullable=False)
     job_id = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=False)
-    application_stages = db.relationship('ApplicationStage',
+    application_stages = db.relationship('Stage',
                                          backref='job', lazy=True)
 
     def __repr__(self):
         return f"Job('{self.title}', '{self.date_posted}', '{self.valid_through}')"
 
 
-class ApplicationStage(db.Model):
+class Stage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(20), nullable=False, default='Pending')
-    note = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(25), nullable=True)
+    note = db.Column(db.Text, nullable=True)
+    date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     job_id = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)
+    status_choices = db.relationship('Choice',
+                                         backref='stage', lazy=True)
+
 
     def __repr__(self):
-        return f"ApplicationStage('{self.status}', '{self.job_id}')"
+        return f"Stage('{self.status}', '{self.job_id}')"
+
+
+class Choice(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    extra = db.Column(db.String(50))
+    stage_id = db.Column(db.Integer, db.ForeignKey('stage.id'), nullable=True)
+
+    def __repr__(self):
+        return f"Choice('{self.name}')"

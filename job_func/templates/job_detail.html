@@ -4,9 +4,13 @@
                 <div>
                     <h2>{{ job.title }}</h2>
                     <p>{{ job.salary }}</p>
+                    <div>
+                        <a class="btn btn-primary btn-sm m-1" href="#">Apply</a>
+                        <a class="btn btn-secondary btn-sm m-1" href="#">Save</a>
+                        <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('new_application_stage', job_id=job.id) }}">Update</a>
+                    </div>
+
                     {{ job.description|safe}}
-                    <!-- <p>{{ job.description }}</p> -->
                 </div>
             </article>
-
         {% endblock content %}

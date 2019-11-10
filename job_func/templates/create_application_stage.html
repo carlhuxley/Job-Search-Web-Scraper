@@ -1,14 +1,11 @@
 {% extends "layout.html" %}
         {% block content %}
           <div>
-            <form method = "POST" action = "http://localhost:5000/application_stage/new">
+            <!-- <form method = "POST" action = "http://localhost:5000/application_stage/"> -->
+            <form method = "POST" action = "">
                 {{ form.hidden_tag() }}
                 <fieldset class="form-group">
-                    <legend>Create Job Application Stage</legend>
-                    <div class="form-group">
-                        {{ form.job_id.label(class="form-control-label") }}
-                        {{ form.job_id(class="form-control form-control-lg") }}
-                    </div>
+                    <legend>{{ job.title }} - Application Stage</legend>
                     <div class="form-group">
                         {{ form.status.label(class="form-control-label") }}
                         {{ form.status(class="form-control form-control-lg") }}
