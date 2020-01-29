@@ -4,9 +4,9 @@ I started this python coding project because it was so difficult for me to resea
 The next stage is adding job application functionality. I will be able to choose the jobs from the list I want to apply for, and which version of my CV I want to use. When I click the apply button the tool will apply for all the jobs on the list. Now this is working with cwjobs.co.uk I can extend this to researching and applying for jobs on multiple job boards. Looking to change the Selenium/Beautiful Soup based scraper to one using the Scrapy Framework so it's easier to manage scraping from multiple sites.
 
 
-Emtering the following into the job search form:
+Entering the following into the job search form:
 keyword = data-analyst, location = london, radius = 20, postedwithin = 7
-Returns => data analyst jobs within a 20mile radius of London posted in the last week.
+Returns => data analyst jobs within a 20 mile radius of London posted in the last week.
 
 You can change the file path to where you want to save the exported csv file. Change the path in job_search.py line 41
 ```Python
@@ -15,7 +15,7 @@ print (file_name)
 export_df = df.to_csv(file_name, sep = ',', index = False, encoding='utf-8-sig')
 ```
 ## Other Features
-Its a work in progress but I've created a corpus of all the job descriptions in the dataset.
+It's a work in progress but I've created a corpus of all the job descriptions in the dataset.
 ```Python
 def create_corpus(jobs):
     corpus = []
