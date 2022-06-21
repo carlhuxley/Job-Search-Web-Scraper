@@ -20,7 +20,7 @@ Mako==1.1.0
 MarkupSafe==1.1.1
 MouseInfo==0.0.4
 nltk==3.4.5
-numpy==1.17.2
+numpy==1.22.0
 pandas==0.25.1
 PyAutoGUI==0.9.47
 pycparser==2.19
